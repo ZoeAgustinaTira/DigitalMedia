@@ -1,0 +1,51 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+      enabled: true
+
+server:
+  port: 8087
+
+springdoc:
+  show-actuator: true
+  swagger-ui:
+    groups-order: DESC
+    disable-swagger-default-url: true
+management:
+  endpoints:
+    web:
+      exposure.include: beans, env, health, info, metrics, mappings
+  endpoint:
+    health:
+      show-details: always
+
+app:
+  cors:
+    allowed-origins: http://localhost:3000
+
+spring:
+  application:
+    name: users-service
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      password: admin
+      username: root
+      authentication-database: admin
+      database: usersdb
+  main:
+    allow-circular-references: true
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: localhost:8080/realms/DigitalMedia
+        registration:
+          keycloak:
+            client-id: microservicios
+            client-secret: K1o34Lt46Doo0MfjzsJd6wuyY0hVD905
+            scope: openid
+            redirect-uri: http://localhost:8080/*
